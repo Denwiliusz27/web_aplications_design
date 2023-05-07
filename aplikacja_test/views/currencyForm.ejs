@@ -1,0 +1,17 @@
+<!-- przy renderowaniu jest przemianowany na html'a-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1>Form</h1>
+    <form method="post" action="/get_currency">
+        Waluta: <input name="currency"/>
+        <input type="submit">
+    </form>
+    <p>Waluta: <%= currency %>,  wartość: <%= value %></p>
+</body>
+</html>
