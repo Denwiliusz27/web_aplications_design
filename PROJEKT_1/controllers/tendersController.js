@@ -1,10 +1,10 @@
 const tenderService = require('../services/tenderService');
 
-const getTenders = async(req, res) => {
-    const allTenders = await tenderService.getAllTenders();
-    res.json(allTenders)
+const getActiveTenders = async(req, res) => {
+    const allActiveTenders = await tenderService.getAllActiveTenders();
+    res.render('activeTenders', {title: 'Przetarg.pl', data: allActiveTenders})
 }
 
 module.exports = {
-    getTenders
+    getActiveTenders
 }

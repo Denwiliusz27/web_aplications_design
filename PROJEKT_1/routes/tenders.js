@@ -5,7 +5,7 @@ const tendersController = require('../controllers/tendersController')
 
 /* GET home page. */
 //localhost:3000/przetargi
-router.get('/aktualne', tendersController.getTenders);
+router.get('/aktualne', tendersController.getActiveTenders);
 
 router.get('/zakonczone', function (req, res) {
     res.send('zakończone');

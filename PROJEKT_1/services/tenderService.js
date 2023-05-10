@@ -1,9 +1,9 @@
 const tenderDao = require('../dao/tenderDao');
 
-const getAllTenders = async () => {
-    return await tenderDao.tenderFindAll()
+const getAllActiveTenders = async () => {
+    return await tenderDao.tenderFindAllActive()
 }
 
 module.exports = {
-    getAllTenders,
+    getAllActiveTenders,
 }

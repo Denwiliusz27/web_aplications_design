@@ -12,6 +12,24 @@ const tenderFindAll = async () => {
     return data
 };
 
+const tenderFindAllActive = () => {
+    const now = new Date()
+    return Tender.findAll({
+        where: {
+            end_date: {
+                [Op.gte]: now
+            }
+        }
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(err => {
+            return err.message
+        })
+}
+
 module.exports = {
     tenderFindAll,
+    tenderFindAllActive,
 }
