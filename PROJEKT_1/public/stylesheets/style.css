@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 nav {
@@ -70,4 +70,36 @@ ul li:last-child{
   align-items: center;
   text-align: center;
   font-weight: bold;
+}
+
+ul .description_button {
+  flex: 2 1 0;
+  background-color: dodgerblue;
+  border-radius: 10px;
+  padding: 0;
+  color: white;
+}
+
+ul .description_button:hover {
+  background-color: #0d4479;
+}
+
+ul .description_button a{
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description_text {
+  border-bottom: 1px solid dodgerblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
 }
