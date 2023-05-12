@@ -7,7 +7,7 @@ const getActiveTenders = async(req, res) => {
 
 const getActiveTender = async(req, res) => {
     const activeTender = await tenderService.getActiveTender(req.params.id);
-    res.render('activeTender', {title: 'Przetargi.pl', data: activeTender})
+    res.render('activeTender', {title: 'Przetargi.pl', data: activeTender , success: {created: req.query.success || ''}})
 }
 
 module.exports = {

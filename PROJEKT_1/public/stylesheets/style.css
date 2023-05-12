@@ -104,6 +104,10 @@ ul li:last-child{
   text-align: start;
 }
 
+.description_text p {
+  padding: 0 10px 0 10px;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -138,9 +142,13 @@ input {
   background-color: dodgerblue;
   border-radius: 10px;
   color: white;
-  margin-bottom: 10px;
 }
 
 .submit_button:hover {
   background-color: #0d4479;
+}
+
+.succes_form_info {
+  color: forestgreen;
+  font-weight: bold;
 }
