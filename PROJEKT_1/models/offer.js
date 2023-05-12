@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
-            tender_i: {
+            tender_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },

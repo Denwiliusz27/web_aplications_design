@@ -7,6 +7,7 @@ const dotenv = require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var tendersRouter = require('./routes/tenders');
+var offerssRouter = require('./routes/offers');
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/przetargi', tendersRouter);
+app.use('/oferta', offerssRouter);
 
 
 // catch 404 and forward to error handler

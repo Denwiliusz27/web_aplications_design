@@ -43,7 +43,15 @@ const tenderFindAllActive = () => {
 }
 
 const getActiveTender = (id) => {
-    return Tender.findByPk(id)
+    const now = new Date()
+
+    return Tender.findByPk(id, {
+        where: {
+            end_date: {
+                [Op.lt]: now
+            }
+        }
+    })
         .then(data => {
             return data;
         })

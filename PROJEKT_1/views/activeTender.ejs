@@ -9,6 +9,7 @@
 <div class="homepage_content">
     <h1>Szczegóły przetargu</h1>
     <div style="width: 50%">
+<!--todo walidacja jeśli brak danych        -->
         <div style="padding: 20px 0 20px;">
             <div class="description_text">
                 <p style="font-weight: bold; flex: 1 1 0; text-align: center">Przedmiot:</p>
@@ -30,9 +31,23 @@
             </div>
         </div>
         <div style="border: 2px solid dodgerblue; border-radius: 10px; padding: 10px">
-            <h3 style="text-align: center">Złóż ofertę</h3>
+            <h2 style="text-align: center">Złóż ofertę</h2>
             <div>
-                <p>formularz</p>
+                <form method="post" action="/oferta/dodaj/<%= data.id %>">
+                    <label for="bidder" >
+                        <span>
+                            Składający ofertę:
+                        </span>
+                        <input type="text" id="bidder" name="bidder" placeholder="Nazwa" required/>
+                    </label><br>
+                    <label for="value">
+                        <span>
+                            Wartość oferty:
+                        </span>
+                        <input type="number" id="value" name="value" placeholder="100000" required/>
+                    </label><br>
+                    <input class="submit_button" type="submit" value="Złóż ofertę">
+                </form>
             </div>
         </div>
     </div>

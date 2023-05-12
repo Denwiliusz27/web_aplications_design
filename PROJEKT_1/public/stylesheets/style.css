@@ -72,7 +72,7 @@ ul li:last-child{
   font-weight: bold;
 }
 
-ul .description_button {
+.description_button {
   flex: 2 1 0;
   background-color: dodgerblue;
   border-radius: 10px;
@@ -80,11 +80,11 @@ ul .description_button {
   color: white;
 }
 
-ul .description_button:hover {
+.description_button:hover {
   background-color: #0d4479;
 }
 
-ul .description_button a{
+.description_button a{
   height: 100%;
   text-decoration: none;
   color: white;
@@ -102,4 +102,45 @@ ul .description_button a{
   justify-content: center;
   align-items: center;
   text-align: start;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+label span {
+  font-weight: bold;
+  flex: 3 1 0;
+  text-align: center;
+}
+
+input {
+  padding: 10px 5px 10px 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+  flex: 5 1 0;
+  text-align: left;
+}
+
+.submit_button {
+  padding: 10px 20px 10px 20px;
+  background-color: dodgerblue;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.submit_button:hover {
+  background-color: #0d4479;
 }

@@ -16,6 +16,7 @@
             <p style="flex: 4 1 0">Data zakończenia</p>
             <p style="flex: 2 1 0"></p>
         </div>
+<!--todo walidacja gdy pusta lista        -->
         <ul>
             <% data.forEach((row) => { %>
             <li>
@@ -28,7 +29,7 @@
                         <button class="description_button">
                             <a style="" href="/przetargi/aktywne/<%= row.id %>">Szczegóły</a>
                         </button>
-                    <% } else {%>
+                    <% } else { %>
                         <p style="flex: 2 1 0; color: red">Przetarg nierozpoczęty</p>
                     <% } %>
                 </div>
