@@ -9,9 +9,8 @@ router.get('/aktywne', tendersController.getActiveTenders);
 router.get('/aktywne/:id/', tendersController.getActiveTender);
 
 
-router.get('/zakonczone', function (req, res) {
-    res.send('zakończone');
-});
+router.get('/zakonczone', tendersController.getCompletedTenders);
+router.get('/zakonczone/:id', tendersController.getCompletedTender);
 
 router.get('/dodaj', function (req, res) {
     res.send('dodaj')

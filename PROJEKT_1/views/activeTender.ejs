@@ -13,27 +13,27 @@
         <div style="padding: 20px 0 20px;">
             <div class="description_text">
                 <p style="font-weight: bold; flex: 1 1 0; text-align: center">Przedmiot:</p>
-                <p style="flex: 2 1 0"><%= data.title %></p>
+                <p style="flex: 2 1 0"><%= tenderInfo.title %></p>
             </div>
             <div class="description_text">
                 <p style="font-weight: bold; flex: 1 1 0; text-align: center">Isntytucja zamawiająca:</p>
-                <p style="flex: 2 1 0"><%= data.contracting_authority %></p>
+                <p style="flex: 2 1 0"><%= tenderInfo.contracting_authority %></p>
             </div>
             <div class="description_text">
                 <p style="font-weight: bold; flex: 1 1 0; text-align: center ">Data przyjmowania ofert:</p>
                 <p style="flex: 2 1 0">
-                    <%= new Date(data.start_date).toLocaleString() %> - <%= new Date(data.end_date).toLocaleString() %>
+                    <%= new Date(tenderInfo.start_date).toLocaleString() %> - <%= new Date(tenderInfo.end_date).toLocaleString() %>
                 </p>
             </div>
             <div class="description_text" style=" border: none">
                 <p style="font-weight: bold; flex: 1 1 0; text-align: center">Opis:</p>
-                <p style="flex: 2 1 0"><%= data.description %></p>
+                <p style="flex: 2 1 0"><%= tenderInfo.description %></p>
             </div>
         </div>
         <div style="border: 2px solid dodgerblue; border-radius: 10px; padding: 10px">
             <h2 style="text-align: center">Złóż ofertę</h2>
             <div>
-                <form method="post" action="/oferta/dodaj/<%= data.id %>">
+                <form method="post" action="/oferta/dodaj/<%= tenderInfo.id %>">
                     <label for="bidder" >
                         <span>
                             Składający ofertę:
@@ -47,6 +47,9 @@
                         <input type="number" id="value" name="value" placeholder="100000" required/>
                     </label><br>
                     <input class="submit_button" type="submit" value="Złóż ofertę">
+                    <% if(success.created){ %>
+                        <p class="succes_form_info">Pomyślnie złożono ofertę</p>
+                    <% } %>
                 </form>
             </div>
         </div>

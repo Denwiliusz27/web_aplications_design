@@ -2,16 +2,6 @@ const db = require("../models/sqConfig");
 const Tender = db.tender;
 const Op = db.Sequelize.Op;
 
-const tenderFindAll = async () => {
-    let data = [];
-    try {
-        data = await Tender.findAll();
-    } catch(e) {
-        console.log(e)
-    }
-    return data
-};
-
 const tenderFindAllActive = () => {
     const now = new Date()
     return Tender.findAll({
@@ -60,8 +50,47 @@ const getActiveTender = (id) => {
         })
 }
 
+const tenderFindAllCompleted = () => {
+    const now = new Date()
+    return Tender.findAll({
+        where: {
+            end_date: {
+                [Op.lt]: now
+            }
+        },
+        order: [
+            ['end_date', 'ASC']
+        ]
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(err => {
+            return err.message
+        })
+}
+
+const getCompletedTender = (id) => {
+    const now = new Date()
+
+    return Tender.findByPk(id, {
+        where: {
+            end_date: {
+                [Op.lt]: now
+            }
+        }
+    })
+        .then(data => {
+            return data;
+        })
+        .catch(err => {
+            return err.message
+        })
+}
+
 module.exports = {
-    tenderFindAll,
     tenderFindAllActive,
     getActiveTender,
+    tenderFindAllCompleted,
+    getCompletedTender,
 }

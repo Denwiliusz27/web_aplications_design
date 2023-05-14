@@ -27,8 +27,8 @@ db.offer = require("./offer.js")(sequelize, Sequelize);
 db.tender = require("./tender.js")(sequelize, Sequelize);
 
 // - Powiazania bazodanowe pomiedzy modelami
-// db.tender.hasMany(db.offer); // jeden - do wielu (1-N)
-// db.offer.belongsTo(db.tender); // zwiazek encji
+db.tender.hasMany(db.offer, {foreignKey: 'tender_id', as: 'tender_id'}); // jeden - do wielu (1-N)
+db.offer.belongsTo(db.tender, {foreignKey: 'tender_id'}); // zwiazek encji
 
 db.sequelize.sync({force: false}) // false - nienadpisuje struktury bazy
     .then(() => {

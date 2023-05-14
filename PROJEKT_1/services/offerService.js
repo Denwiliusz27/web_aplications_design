@@ -9,6 +9,11 @@ const createOffer = async (id, bidder, value) => {
     }
 }
 
+const getTenderOffers = async (id) => {
+    return await offerDao.getTenderOffers(id);
+}
+
 module.exports = {
     createOffer,
+    getTenderOffers,
 }

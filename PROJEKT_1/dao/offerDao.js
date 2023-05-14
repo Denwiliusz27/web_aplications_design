@@ -1,5 +1,7 @@
 const db = require("../models/sqConfig");
+const {Sequelize} = require("sequelize");
 const Offer = db.offer;
+const Tender = db.tender;
 const Op = db.Sequelize.Op;
 
 const createOffer = (id, bidder, value) => {
@@ -10,8 +12,6 @@ const createOffer = (id, bidder, value) => {
         tender_id: id
     }
 
-    console.log("[ " + bidder + ", " + value + ", " +id+"]")
-
     return Offer.create(offer)
         .then(data => {
             return data.dataValues;
@@ -21,6 +21,30 @@ const createOffer = (id, bidder, value) => {
         })
 }
 
+const getTenderOffers = (id) => {
+    return Offer.findAll({
+        where: {
+            tender_id: {
+                [Op.eq]: id
+            },
+            value: {
+                [Op.lte]: Sequelize.col('tender.max_value')
+            }
+        },
+        order: [
+            ['value', 'ASC']
+        ],
+        include:[{
+            model: Tender,
+            where: {
+                id: id
+            },
+            required: false
+        }]
+    })
+}
+
 module.exports = {
     createOffer,
+    getTenderOffers,
 }
