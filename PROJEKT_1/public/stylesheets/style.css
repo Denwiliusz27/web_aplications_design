@@ -137,6 +137,14 @@ input {
   text-align: left;
 }
 
+textarea {
+  padding: 10px 5px 10px 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+  flex: 5 1 0;
+  text-align: left;
+}
+
 .submit_button {
   padding: 10px 20px 10px 20px;
   background-color: dodgerblue;

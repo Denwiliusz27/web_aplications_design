@@ -88,9 +88,20 @@ const getCompletedTender = (id) => {
         })
 }
 
+const createNewTender = (data) => {
+    return Tender.create(data)
+        .then(data => {
+            return data.dataValues;
+        })
+        .catch(() => {
+            return null;
+        })
+}
+
 module.exports = {
     tenderFindAllActive,
     getActiveTender,
     tenderFindAllCompleted,
     getCompletedTender,
+    createNewTender
 }

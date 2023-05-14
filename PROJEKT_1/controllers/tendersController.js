@@ -23,9 +23,21 @@ const getCompletedTender = async (req, res) => {
     res.render('completedTender', {title: 'Przetargi.pl', tenderInfo: completedTender, offers: tenderOffers})
 }
 
+const getNewTenderForm = async (req, res) => {
+    res.render('addTender', {title: 'Przetargi.pl', info: {}});
+}
+
+const createNewTender = async (req, res) => {
+    const info = tenderService.createNewTender(req.body)
+    console.log("mam info: " + info.success + ", " + info.timeError + "," + info.valueError)
+    res.render('addTender', {title: 'Przetargi.pl', info: info});
+}
+
 module.exports = {
     getActiveTenders,
     getActiveTender,
     getCompletedTenders,
     getCompletedTender,
+    getNewTenderForm,
+    createNewTender
 }
