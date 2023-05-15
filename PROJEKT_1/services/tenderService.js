@@ -39,8 +39,6 @@ const createNewTender = async (tender) => {
         info.success = false;
     }
 
-    console.log(info.timeError + ', ' + info.valueError);
-
     if (!info.success) {
         return info;
     } else {
