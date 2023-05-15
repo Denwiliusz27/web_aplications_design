@@ -25,10 +25,10 @@
             <label for="end_date">
                 <span>Data zakończenia:</span>
                 <input type="datetime-local" id="end_date" name="end_date" required>
-                <% if(info.timeError){%>
-                    <p><%= info.timeError %></p>
-                <% }%>
-            </label><br>
+            </label>
+            <% if(info.timeError){%>
+                <p style="text-align: center; color: red; font-weight: bold"><%= info.timeError %></p>
+            <% }%><br>
             <label for="description">
                 <span>Opis:</span>
                 <textarea id="description" name="description" placeholder="Opis" rows="3" required></textarea>
@@ -36,13 +36,13 @@
             <label for="max_value">
                 <span>Maksymalna wartość:</span>
                 <input type="number" id="max_value" name="max_value">
-                <% if(info.valueError){%>
-                    <p><%= info.valueError %></p>
-                <% }%>
-            </label><br>
+            </label>
+            <% if(info.valueError){%>
+                <p style="text-align: center; color: red; font-weight: bold"><%= info.valueError %></p>
+            <% }%><br>
             <input class="submit_button" type="submit" value="Utwórz przetarg">
             <% if(info.success){ %>
-                <p>Pomyślnie utworzono now przetarg</p>
+                <p style="text-align: center; color: green; font-weight: bold">Pomyślnie utworzono nowy przetarg</p>
             <% } %>
         </form>
     </div>

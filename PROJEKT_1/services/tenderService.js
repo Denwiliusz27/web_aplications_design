@@ -16,39 +16,41 @@ const getCompletedTender = async(id) => {
     return await tenderDao.getCompletedTender(id)
 }
 
-const createNewTender = async(tender) => {
+const createNewTender = async (tender) => {
     const info = {
         timeError: '',
         valueError: '',
-    }
+        success: true
+    };
 
-    if (new Date(tender.start_date) >= new Date(tender.end_date)){
+    if (new Date(tender.start_date) >= new Date(tender.end_date)) {
         info.timeError = 'Czas rozpoczęcia przetargu nie może być późniejszy niż czas jego zakończenia';
-    }
-
-    if (new Date() > new Date(tender.start_date)){
+        info.success = false;
+    } else if (new Date() > new Date(tender.start_date)) {
         info.timeError = 'Czas zakończenia przetargu nie może być datą przeszłą';
+        info.success = false;
     }
 
-    if (tender.max_value <= 0){
+    if (tender.max_value <= 0) {
         info.valueError = 'Maksymalna wartość dla przetargu powinna być wartością dodatnią';
+        info.success = false;
     }
 
-    console.log(info.timeError + ", " + info.valueError)
+    console.log(info.timeError + ', ' + info.valueError);
 
-    const newTender = await tenderDao.createNewTender(tender)
-    if (newTender){
-        return {
-            timeError: info.timeError,
-            valueError: info.valueError,
-            success: true
-        };
+    if (!info.success) {
+        return info;
     } else {
-        return {
-            timeError: info.timeError,
-            valueError: info.valueError,
-            success: false
-        };
+        const newTender = await tenderDao.createNewTender(tender);
+        if (newTender) {
+            return {
+                success: true
+            };
+        } else {
+            return {
+                success: false
+            };
+        }
     }
 }
 

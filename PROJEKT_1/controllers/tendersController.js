@@ -28,7 +28,7 @@ const getNewTenderForm = async (req, res) => {
 }
 
 const createNewTender = async (req, res) => {
-    const info = tenderService.createNewTender(req.body)
+    const info = await tenderService.createNewTender(req.body)
     console.log("mam info: " + info.success + ", " + info.timeError + "," + info.valueError)
     res.render('addTender', {title: 'Przetargi.pl', info: info});
 }
