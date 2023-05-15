@@ -24,15 +24,18 @@ const createNewTender = async (tender) => {
     };
 
     if (new Date(tender.start_date) >= new Date(tender.end_date)) {
-        info.timeError = 'Czas rozpoczęcia przetargu nie może być późniejszy niż czas jego zakończenia';
+        info.endTimeError = 'Czas rozpoczęcia przetargu nie może być późniejszy niż czas jego zakończenia';
         info.success = false;
-    } else if (new Date() > new Date(tender.start_date)) {
-        info.timeError = 'Czas zakończenia przetargu nie może być datą przeszłą';
+    } else if (new Date() >= new Date(tender.end_date)) {
+        info.endTimeError = 'Czas zakończenia przetargu nie może być datą przeszłą';
+        info.success = false;
+    } else if  (new Date() >= new Date(tender.start_date)) {
+        info.startTimeError = 'Czas rozpoczęcia przetargu nie może być datą przeszłą';
         info.success = false;
     }
 
     if (tender.max_value <= 0) {
-        info.valueError = 'Maksymalna wartość dla przetargu powinna być wartością dodatnią';
+        info.valueError = 'Maksymalna wartość przetargu powinna być wartością dodatnią';
         info.success = false;
     }
 

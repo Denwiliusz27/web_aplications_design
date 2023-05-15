@@ -9,33 +9,36 @@
 <div class="homepage_content">
     <h1>Aktywne przetargi</h1>
     <div style="width: 80%">
-        <div class="list_header">
-            <p style="flex: 2 1 0">Numer porządkowy</p>
-            <p style="flex: 6 1 0">Przedmiot przetargu</p>
-            <p style="flex: 4 1 0">Data rozpoczęcia</p>
-            <p style="flex: 4 1 0">Data zakończenia</p>
-            <p style="flex: 2 1 0"></p>
-        </div>
-<!--todo walidacja gdy pusta lista        -->
-        <ul>
-            <% data.forEach((row) => { %>
-            <li>
-                <div>
-                    <p style="flex: 2 1 0"><%= row.id %></p>
-                    <p style="flex: 6 1 0"><%= row.title %></p>
-                    <p style="flex: 4 1 0"><%= new Date(row.start_date).toLocaleString() %></p>
-                    <p style="flex: 4 1 0"><%= new Date(row.end_date).toLocaleString() %></p>
-                    <% if(row.active){ %>
-                        <button class="description_button">
-                            <a style="" href="/przetargi/aktywne/<%= row.id %>">Szczegóły</a>
-                        </button>
-                    <% } else { %>
-                        <p style="flex: 2 1 0; color: red">Przetarg nierozpoczęty</p>
-                    <% } %>
-                </div>
-            </li>
-            <% }); %>
-        </ul>
+        <% if (data.length > 0 ){ %>
+            <div class="list_header">
+                <p style="flex: 2 1 0">Numer porządkowy</p>
+                <p style="flex: 6 1 0">Przedmiot przetargu</p>
+                <p style="flex: 4 1 0">Data rozpoczęcia</p>
+                <p style="flex: 4 1 0">Data zakończenia</p>
+                <p style="flex: 2 1 0"></p>
+            </div>
+            <ul>
+                <% data.forEach((row) => { %>
+                    <li>
+                        <div>
+                            <p style="flex: 2 1 0"><%= row.id %></p>
+                            <p style="flex: 6 1 0"><%= row.title %></p>
+                            <p style="flex: 4 1 0"><%= new Date(row.start_date).toLocaleString() %></p>
+                            <p style="flex: 4 1 0"><%= new Date(row.end_date).toLocaleString() %></p>
+                            <% if(row.active){ %>
+                                <button class="description_button">
+                                    <a style="" href="/przetargi/aktywne/<%= row.id %>">Szczegóły</a>
+                                </button>
+                            <% } else { %>
+                                <p style="flex: 2 1 0; color: red">Przetarg nierozpoczęty</p>
+                            <% } %>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p class="error_value">Brak aktywnych przetargów</p>
+        <% } %>
     </div>
 </div>
 </body>

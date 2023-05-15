@@ -24,9 +24,7 @@ const createOffer = (id, bidder, value) => {
 const getTenderOffers = (id) => {
     return Offer.findAll({
         where: {
-            tender_id: {
-                [Op.eq]: id
-            },
+            tender_id: id,
             value: {
                 [Op.lte]: Sequelize.col('tender.max_value')
             }

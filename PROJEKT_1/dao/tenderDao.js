@@ -25,7 +25,8 @@ const tenderFindAllActive = () => {
                     max_value: record.max_value,
                     description: record.description,
                     active: new Date(record.start_date) < now,
-                }});
+                }
+            });
         })
         .catch(err => {
             return err.message
@@ -35,18 +36,20 @@ const tenderFindAllActive = () => {
 const getActiveTender = (id) => {
     const now = new Date()
 
-    return Tender.findByPk(id, {
+    return Tender.findOne({
         where: {
+            id: id,
             end_date: {
-                [Op.lt]: now
+                [Op.gt]: now
             }
         }
     })
         .then(data => {
-            return data;
+            return data ? data : {};
         })
         .catch(err => {
-            return err.message
+            console.log(err.message)
+            return {}
         })
 }
 
@@ -73,15 +76,16 @@ const tenderFindAllCompleted = () => {
 const getCompletedTender = (id) => {
     const now = new Date()
 
-    return Tender.findByPk(id, {
+    return Tender.findOne({
         where: {
+            id: id,
             end_date: {
                 [Op.lt]: now
             }
         }
     })
         .then(data => {
-            return data;
+            return data ? data: {};
         })
         .catch(err => {
             return err.message

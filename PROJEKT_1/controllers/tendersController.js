@@ -8,7 +8,7 @@ const getActiveTenders = async(req, res) => {
 
 const getActiveTender = async(req, res) => {
     const activeTender = await tenderService.getActiveTender(req.params.id);
-    res.render('activeTender', {title: 'Przetargi.pl', tenderInfo: activeTender , success: {created: req.query.success || ''}})
+    res.render('activeTender', {title: 'Przetargi.pl', info: {tender: activeTender, error: null, success:null}})
 }
 
 const getCompletedTenders = async (req, res) => {
@@ -19,7 +19,6 @@ const getCompletedTenders = async (req, res) => {
 const getCompletedTender = async (req, res) => {
     const completedTender = await tenderService.getCompletedTender(req.params.id);
     const tenderOffers = await offerService.getTenderOffers(req.params.id);
-    console.log("to - " + tenderOffers);
     res.render('completedTender', {title: 'Przetargi.pl', tenderInfo: completedTender, offers: tenderOffers})
 }
 
@@ -29,7 +28,6 @@ const getNewTenderForm = async (req, res) => {
 
 const createNewTender = async (req, res) => {
     const info = await tenderService.createNewTender(req.body)
-    console.log("mam info: " + info.success + ", " + info.timeError + "," + info.valueError)
     res.render('addTender', {title: 'Przetargi.pl', info: info});
 }
 
