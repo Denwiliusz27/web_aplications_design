@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<% include navbar.ejs %>
+<div class="homepage_content">
+    <h1>Szczegóły przetargu</h1>
+    <div style="width: 50%">
+        <% if (info.tender.id){ %>
+            <div style="padding: 20px 0 20px;">
+                <div class="description_text">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center">Przedmiot:</p>
+                    <p style="flex: 2 1 0"><%= info.tender.title %></p>
+                </div>
+                <div class="description_text">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center">Isntytucja zamawiająca:</p>
+                    <p style="flex: 2 1 0"><%= info.tender.contracting_authority %></p>
+                </div>
+                <div class="description_text">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center ">Data przyjmowania ofert:</p>
+                    <p style="flex: 2 1 0">
+                        <%= new Date(info.tender.start_date).toLocaleString() %>
+                        - <%= new Date(info.tender.end_date).toLocaleString() %>
+                    </p>
+                </div>
+                <div class="description_text" style=" border: none">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center">Opis:</p>
+                    <p style="flex: 2 1 0"><%= info.tender.description %></p>
+                </div>
+            </div>
+            <div style="border: 2px solid dodgerblue; border-radius: 10px; padding: 10px">
+                <h2 style="text-align: center">Złóż ofertę</h2>
+                <div>
+                    <form method="post" action="/oferta/dodaj/<%= info.tender.id %>">
+                        <label for="bidder">
+                            <span>
+                                Składający ofertę:
+                            </span>
+                            <input type="text" id="bidder" name="bidder" placeholder="Nazwa" required/>
+                        </label><br>
+                        <label for="value">
+                            <span>
+                                Wartość oferty:
+                            </span>
+                            <input type="number" id="value" name="value" placeholder="100000" required/>
+                        </label><br>
+                        <% if (info.error){%>
+                            <p class="error_value"><%= info.error %></p>
+                        <% } %>
+                        <input class="submit_button" type="submit" value="Złóż ofertę">
+                        <% if (info.success){ %>
+                            <p class="succes_form_info">Pomyślnie złożono ofertę</p>
+                        <% } else if (info.success===false){ %>
+                            <p class="error_value" >Przetarg został zakończony lub nie istnieje</p>
+                        <% } %>
+                    </form>
+                </div>
+            </div>
+        <% } else { %>
+            <div>
+                <p class="error_value">Przetarg został zakończony lub nie istnieje</p>
+            </div>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

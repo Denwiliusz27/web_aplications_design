@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<% include navbar.ejs %>
+<div class="homepage_content">
+    <h1>Szczegóły przetargu</h1>
+    <div style="width: 50%">
+        <% if (tenderInfo.id) { %>
+            <div style="padding: 20px 0 20px;">
+                <div class="description_text">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center">Przedmiot:</p>
+                    <p style="flex: 2 1 0"><%= tenderInfo.title %></p>
+                </div>
+                <div class="description_text">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center">Isntytucja zamawiająca:</p>
+                    <p style="flex: 2 1 0"><%= tenderInfo.contracting_authority %></p>
+                </div>
+                <div class="description_text" style=" border: none">
+                    <p style="font-weight: bold; flex: 1 1 0; text-align: center">Opis:</p>
+                    <p style="flex: 2 1 0"><%= tenderInfo.description %></p>
+                </div>
+            </div>
+            <div style="border: 2px solid dodgerblue; border-radius: 10px; padding: 10px; display: flex; flex-direction: column;
+                    justify-content: center; align-items: center;">
+                <% if(offers.length > 0){ %>
+                    <h2 style="text-align: center">Złożone oferty</h2>
+                    <div style="width: 80%">
+                        <div class="list_header">
+                            <p style="flex: 3 1 0">Składający</p>
+                            <p style="flex: 2 1 0">Wartość</p>
+                        </div>
+                        <ul style="margin: 0">
+                            <% offers.forEach((row) => { %>
+                                <li>
+                                    <div style="padding: 0">
+                                        <p style="flex: 3 1 0"><%= row.bidder %></p>
+                                        <p style="flex: 2 1 0"><%= row.value %> zł</p>
+                                    </div>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                <% } else { %>
+                    <p style="font-weight: bold; color: red">Przetarg zakończony bez rozstrzygnięcia</p>
+                <% } %>
+            </div>
+        <% } else { %>
+            <p class="error_value">Przetarg nie istnieje</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
