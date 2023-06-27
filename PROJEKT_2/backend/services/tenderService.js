@@ -23,9 +23,11 @@ const getCompletedTender = async(id) => {
 // tworzy nowy przetarg
 const createNewTender = async (tender) => {
     const info = {
-        timeError: '',
+        endTimeError: '',
+        startTimeError: '',
         valueError: '',
-        success: true
+        success: true,
+        tender: null
     };
 
     if (new Date(tender.start_date) >= new Date(tender.end_date)) {
@@ -49,13 +51,11 @@ const createNewTender = async (tender) => {
     } else {
         const newTender = await tenderDao.createNewTender(tender);
         if (newTender) {
-            return {
-                success: true
-            };
+            info.tender = newTender
+            return info;
         } else {
-            return {
-                success: false
-            };
+            info.success = false
+            return info;
         }
     }
 }

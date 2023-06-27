@@ -7,7 +7,7 @@ const createOffer = async (id, bidder, value) => {
     if (activeTender.id){
         if (value <= 0 ){
             return {
-                tender: activeTender,
+                offer: null,
                 error: 'Wartość oferty powinna być wartością dodatnią',
                 success: null
             }
@@ -16,20 +16,20 @@ const createOffer = async (id, bidder, value) => {
         const offer = await offerDao.createOffer(id, bidder, value)
         if (offer) {
             return {
-                tender: activeTender,
+                offer: offer,
                 error: null,
                 success: true
             }
         } else {
             return {
-                tender: activeTender,
+                offer: null,
                 error: null,
                 success: false
             }
         }
     } else {
         return {
-            tender: {},
+            offer: null,
             error: null,
             success: false
         }

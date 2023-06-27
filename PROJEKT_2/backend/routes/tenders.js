@@ -10,8 +10,6 @@ router.get('/aktywne/:id/', tendersController.getActiveTender);
 router.get('/zakonczone', tendersController.getCompletedTenders);
 router.get('/zakonczone/:id', tendersController.getCompletedTender);
 
-router.get('/dodaj', tendersController.getNewTenderForm);
 router.post('/dodaj', tendersController.createNewTender);
-
 
 module.exports = router;
