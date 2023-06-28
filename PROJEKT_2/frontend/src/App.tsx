@@ -16,7 +16,7 @@ function App() {
                   <Link to="/" className="px-12 ">Przetargi.pl</Link>
               </div>
 
-              <div className="flex flex-row pl-20 text-white w-4/5 drop-shadow-xl shadow-black text-xl ">
+              <div className="flex flex-row pl-20 text-white w-4/5 drop-shadow-xl shadow-black text-xl text-center">
                   <div className="hover:bg-amber-500 flex flex-row items-center">
                       <Link to="/aktywne" className="px-12">Aktywne przetargi</Link>
                   </div>

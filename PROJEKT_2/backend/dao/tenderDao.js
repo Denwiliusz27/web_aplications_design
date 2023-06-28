@@ -47,7 +47,16 @@ const getActiveTender = (id) => {
         }
     })
         .then(data => {
-            return data ? data : {};
+            return data ? {
+                id: data.id,
+                title: data.title,
+                contracting_authority: data.contracting_authority,
+                start_date: data.start_date,
+                end_date: data.end_date,
+                max_value: data.max_value,
+                description: data.description,
+                active: new Date(data.start_date) < now,
+            } : {};
         })
         .catch(err => {
             console.log(err.message)

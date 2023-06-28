@@ -6,7 +6,7 @@ const {all} = require("express/lib/application");
 const getActiveTenders = async(req, res) => {
     try {
         const allActiveTenders = await tenderService.getAllActiveTenders();
-        res.status(200).json({status:200, data: allActiveTenders})
+        res.status(200).json(allActiveTenders)
     } catch(e) {
         res.status(e.code).json({status:e.code})
     }
@@ -16,7 +16,7 @@ const getActiveTenders = async(req, res) => {
 const getActiveTender = async(req, res) => {
     try {
         const activeTender = await tenderService.getActiveTender(req.params.id);
-        res.status(200).json({status:200, data: activeTender})
+        res.status(200).json(activeTender)
     } catch(e) {
         res.status(e.code).json({status:e.code})
     }
@@ -27,7 +27,7 @@ const getActiveTender = async(req, res) => {
 const getCompletedTenders = async (req, res) => {
     try {
         const allCompletedTenders = await tenderService.getAllCompletedTenders();
-        res.status(200).json({status:200, data: allCompletedTenders})
+        res.status(200).json(allCompletedTenders)
     } catch(d) {
         res.status(e.code).json({status:e.code})
     }
@@ -38,7 +38,7 @@ const getCompletedTenders = async (req, res) => {
 const getCompletedTender = async (req, res) => {
     try {
         const completedTender = await tenderService.getCompletedTender(req.params.id);
-        res.status(200).json({status:200, data: completedTender})
+        res.status(200).json(completedTender)
     } catch(e) {
         res.status(e.code).json({status:e.code})
     }
@@ -49,7 +49,7 @@ const getCompletedTender = async (req, res) => {
 const createNewTender = async (req, res) => {
     try {
         const info = await tenderService.createNewTender(req.body)
-        res.status(200).json({status:200, message: info})
+        res.status(200).json({ message: info})
     } catch(e) {
         res.status(e.code).json({status:e.code})
     }

@@ -1,7 +1,7 @@
 import Api from "../Api";
 import {useQuery} from "react-query";
 import {Tender} from "../models/Tender";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function ActiveTenders() {
 
@@ -9,7 +9,7 @@ function ActiveTenders() {
         queryKey: ["tenders"],
         queryFn: () => {
             return Api.get("przetargi/aktywne")
-                .then((res) => res.data.data)
+                .then((res) => res.data)
         },
         enabled: true,
     })
