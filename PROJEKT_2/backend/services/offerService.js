@@ -5,14 +5,6 @@ const tenderService = require("./tenderService");
 const createOffer = async (id, bidder, value) => {
     const activeTender = await tenderService.getActiveTender(id);
     if (activeTender.id){
-        if (value <= 0 ){
-            return {
-                offer: null,
-                error: 'Wartość oferty powinna być wartością dodatnią',
-                success: null
-            }
-        }
-
         const offer = await offerDao.createOffer(id, bidder, value)
         if (offer) {
             return {
