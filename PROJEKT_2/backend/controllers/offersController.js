@@ -14,7 +14,7 @@ const addOffer = async (req, res) => {
 const getOffersForTender = async (req, res) => {
     try {
         const tenderOffers = await offerService.getTenderOffers(req.params.tender_id);
-        res.status(200).json({status: 200, data: tenderOffers})
+        res.status(200).json(tenderOffers)
     } catch (e) {
         res.status(e.code).json({status: e.code})
     }

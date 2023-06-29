@@ -133,7 +133,7 @@ function ActiveTender() {
 
                                         <div className="flex flex-row py-3">
                                             <div className="basis-1/3 text-center font-bold">
-                                                <p>Data zakończenia</p>
+                                                <p>Opis</p>
                                             </div>
                                             <div className="basis-2/3 text-center my-auto">
                                                 <p>{tender.data.description}</p>
