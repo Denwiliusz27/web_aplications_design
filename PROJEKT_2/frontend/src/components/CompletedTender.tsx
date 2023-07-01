@@ -27,9 +27,6 @@ function CompletedTender() {
         enabled: true,
     })
 
-    console.log(offers)
-
-
     return (
         <>
             <h1 className="text-center text-xl font-bold pb-10">Szczegóły przetargu</h1>
