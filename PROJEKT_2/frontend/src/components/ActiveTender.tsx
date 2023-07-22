@@ -3,7 +3,6 @@ import {Tender} from "../models/Tender";
 import Api from "../Api";
 import {useParams} from "react-router-dom";
 import {useState} from "react";
-import {AxiosError} from "axios";
 
 function ActiveTender() {
     const {id} = useParams()
@@ -34,6 +33,8 @@ function ActiveTender() {
         },
         onSuccess() {
             setInfo("Pomyślnie dodano ofertę")
+            setValue(0)
+            setOfferer("")
         }
     });
 
@@ -54,11 +55,14 @@ function ActiveTender() {
     const addNewOffer = (e) => {
         e.preventDefault()
         const now = new Date()
+        now.setHours(now.getHours() + 2)
 
         if(value <= 0){
             setValueError("Wartość oferty powinna być liczbą dodatnią")
         } else if (now > new Date(tender.data.end_date)){
             setError("Przetarg został zakończony")
+            setValue(0)
+            setOfferer("")
         } else {
             createOffer.mutate()
         }

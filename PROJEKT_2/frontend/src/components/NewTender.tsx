@@ -1,5 +1,5 @@
 import {useState} from "react";
-import moment, {max} from "moment";
+import moment from "moment";
 import {useMutation} from "react-query";
 import Api from "../Api";
 
@@ -31,23 +31,33 @@ function NewTender() {
         },
         onSuccess() {
             setInfo("Pomyślnie dodano przetarg")
+            setTitle("")
+            setContractingAuthority("")
+            setStartDate(null)
+            setEndDate(null)
+            setMaxValue(0)
+            setDescription("")
         }
     });
 
     const handleTitleChange = (event: React.FormEvent<HTMLInputElement>) => {
+        setInfo("")
         setTitle(event.currentTarget.value)
     }
 
     const handleAuthorityChange = (event: React.FormEvent<HTMLInputElement>) => {
+        setInfo("")
         setContractingAuthority(event.currentTarget.value)
     }
 
     const handleStartDateChange = (e) => {
+        setInfo("")
         setDateError("")
         setStartDate(new Date(e.target.value))
     }
 
     const handleEndDateChange = (e) => {
+        setInfo("")
         setDateError("")
         setEndDate(new Date(e.target.value))
     }
@@ -58,10 +68,12 @@ function NewTender() {
         } else {
             setMaxValue(parseInt(event.currentTarget.value));
         }
+        setInfo("")
         setValueError("")
     }
 
     const handleDescriptionChange = (e) => {
+        setInfo("")
         setDescription(e.target.value)
     }
 

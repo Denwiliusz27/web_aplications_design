@@ -19,7 +19,7 @@ function CompletedTenders() {
             {completedTenders.isFetching ? (
                 <p className="mx-auto pt-10 text-center">Ładowanie danych...</p>
             ) : (
-                <div className="w-4/5 mx-auto pt-10">
+                <div className="w-4/5 mx-auto pt-10 pb-10">
                     <div className="w-full px-6 flex flex-col">
                         <div className="flex flex-row text-center font-medium">
                             <p className="basis-1/4 ">Numer porządkowy</p>
