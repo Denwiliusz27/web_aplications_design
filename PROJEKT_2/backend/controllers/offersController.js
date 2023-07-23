@@ -4,7 +4,7 @@ const offerService = require("../services/offerService")
 const addOffer = async (req, res) => {
     try {
         const addedInfo = await offerService.createOffer(req.params.id, req.body.bidder, req.body.value);
-        res.status(200).json({status: 200, data: addedInfo})
+        res.status(200).json({ data: addedInfo})
     } catch (e) {
         res.status(e.code).json({status: e.code})
     }
