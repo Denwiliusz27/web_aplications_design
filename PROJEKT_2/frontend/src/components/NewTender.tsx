@@ -24,7 +24,10 @@ function NewTender() {
                 end_date: endDate,
                 max_value: maxValue,
                 description: description
-            }).then((res) => res.data);
+            }).then((res) => res.data)
+                .catch(() => {
+                    setError("Błąd przy próbie tworzenia przetargu")
+                });
         },
         onError() {
             setError("Nie udało się utworzyć przetargu");

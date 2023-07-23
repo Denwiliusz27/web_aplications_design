@@ -1,30 +1,14 @@
 const offerDao = require('../dao/offerDao')
 const tenderService = require("./tenderService");
+const ServerError = require("../errors/ServerError");
 
 // tworzy nową ofertę dla przetargu o podanym id
 const createOffer = async (id, bidder, value) => {
     const activeTender = await tenderService.getActiveTender(id);
     if (activeTender.id){
-        const offer = await offerDao.createOffer(id, bidder, value)
-        if (offer) {
-            return {
-                offer: offer,
-                error: null,
-                success: true
-            }
-        } else {
-            return {
-                offer: null,
-                error: null,
-                success: false
-            }
-        }
+        return  await offerDao.createOffer(id, bidder, value)
     } else {
-        return {
-            offer: null,
-            error: null,
-            success: false
-        }
+        throw new ServerError("getActiveTender() error", 500)
     }
 }
 

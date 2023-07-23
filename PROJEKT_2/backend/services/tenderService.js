@@ -22,42 +22,7 @@ const getCompletedTender = async(id) => {
 
 // tworzy nowy przetarg
 const createNewTender = async (tender) => {
-    const info = {
-        endTimeError: '',
-        startTimeError: '',
-        valueError: '',
-        success: true,
-        tender: null
-    };
-
-    if (new Date(tender.start_date) >= new Date(tender.end_date)) {
-        info.endTimeError = 'Czas rozpoczęcia przetargu nie może być późniejszy niż czas jego zakończenia';
-        info.success = false;
-    } else if (new Date() >= new Date(tender.end_date)) {
-        info.endTimeError = 'Czas zakończenia przetargu nie może być datą przeszłą';
-        info.success = false;
-    } else if  (new Date() >= new Date(tender.start_date)) {
-        info.startTimeError = 'Czas rozpoczęcia przetargu nie może być datą przeszłą';
-        info.success = false;
-    }
-
-    if (tender.max_value <= 0) {
-        info.valueError = 'Maksymalna wartość przetargu powinna być wartością dodatnią';
-        info.success = false;
-    }
-
-    if (!info.success) {
-        return info;
-    } else {
-        const newTender = await tenderDao.createNewTender(tender);
-        if (newTender) {
-            info.tender = newTender
-            return info;
-        } else {
-            info.success = false
-            return info;
-        }
-    }
+    return await tenderDao.createNewTender(tender);
 }
 
 module.exports = {
